@@ -1,0 +1,97 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: calibri;
+}
+nav{
+    width: 100%;
+    height: 120px;
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+}
+nav a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;  
+}
+nav ul{
+    list-style: none;
+    margin: auto;
+    margin-left: 70px;
+    margin-right: 70px;
+    display: flex;
+    width: 300px;
+    
+    justify-content: space-around;
+}
+.title a{
+    font-size: 40px;
+    color: aqua;
+}   
+.container{
+    display: flex;
+    align-items: center;
+}
+.prop{
+    width: 100%;
+    height: 700px;
+    background-image: url("https://cdn.wallpapersafari.com/97/64/gWXD6u.jpg");
+    background-repeat: no-repeat;
+    object-fit: contain ;
+    margin-bottom: 80px;
+}
+.prop .msg h1{
+    margin: auto;   
+    color: white;
+    font-size: 90px;
+}
+.prop .msg{
+    height: 100px;
+    width: auto;
+    background-color: black;
+    margin: auto;   
+}
+.msg{
+    height: 80px;
+    width: 60%;
+    margin: auto;
+    background-color: black;
+    margin-top: 20px; 
+    display: flex;  
+    margin-bottom: 20px;
+}
+.msg h3{
+    font-size: 60px;
+    margin: auto;
+    color: white;
+}
+.cards{
+    display: flex;
+    justify-content: space-around;
+}
+.card{
+    width: 360px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+    border: 2px solid rgb(148, 148, 132);
+    background-color: beige;
+}
+.card img{
+    height: auto;
+    width: 300px;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 100%;
+}
+.footer{
+    width: 100%;
+    height: 180px;
+    background-color: black;
+}
