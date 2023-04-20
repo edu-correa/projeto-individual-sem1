@@ -82,6 +82,9 @@ nav ul{
     border: 2px solid rgb(148, 148, 132);
     background-color: beige;
 }
+.card h3{
+    font-size: 40px;
+}
 .card img{
     height: auto;
     width: 300px;
