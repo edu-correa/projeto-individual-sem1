@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaTech | Tempo Real</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/funcoes.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="validarSessao()">
+
+    <nav>
+        <ul class="title">
+             <li><a href="index.html">Acoustic Man</a></li>
+        </ul>
+        <ul>
+            <li><a href="cifra.html">Cifras</a></li>
+            <li><a href="tabs.html">Tabs</a></li>
+            <li><a href="perfil.html" id="nomeUser"></a></li>
+
+        </ul>
+
+      
+    </nav>
+    <h1>
+        Seja bem vindo, <span id="nomeUserTitulo"></span>
+    </h1>
+    </body>
+
+<script>
+    if(sessionStorage.NOME_USUARIO != undefined){
+        nomeUser.innerHTML = sessionStorage.NOME_USUARIO;
+        nomeUserTitulo.innerHTML = sessionStorage.NOME_USUARIO;
+    }
+</script>
+</html>
