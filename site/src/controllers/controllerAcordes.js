@@ -8,10 +8,12 @@ function cadastrar(req, res) {
     var nomeMusica = req.body.nomeMusicaServer;
     var tempo = req.body.tempoServer;
     var idUsuario = req.body.idUsuario;
+    var img = req.body.imgServer;
+    var desc = req.body.descServer;
     console.log(`${acorde}\n ${nomeMusica} \n ${tempo} \n ${idUsuario}`)
 
     if (acorde != null && nomeMusica != null && tempo != null) {
-        modelAcordes.cadastrarAcorde(acorde, nomeMusica, tempo, idUsuario).then(
+        modelAcordes.cadastrarAcorde(acorde, nomeMusica, tempo, idUsuario, desc, img).then(
             async function (resultado) {
                 respostas = await resultado
                 if (respostas.length > 0) {

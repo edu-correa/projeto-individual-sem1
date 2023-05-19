@@ -19,6 +19,8 @@
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
 }
  
 #cardMusica h3{
@@ -26,13 +28,19 @@
     width: 20%;
     height: 20px;
     margin-top: 10px;
+    display: flex;
+    text-align: center;
 }
 #cardMusica h5{
     margin: auto;
     width: 20%;
-    
+    text-align: center;
 }
 #cardMusica a{
     width: 100px;
     margin: auto;
+}
+#cardMusica img{
+    height: 100px;
+    width: 100px;
 }

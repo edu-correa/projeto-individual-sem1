@@ -43,6 +43,10 @@
     <div id="form">
         <label for="ipt_nomeMusica">Nome da música</label>
         <input type="text" id="ipt_nomeMusica" name="ipt_nomeMusica"><br>
+        <label for="ipt_desc">Descrição</label>
+        <input type="text" id="ipt_desc" name="ipt_desc"><br>
+        <label for="ipt_img">Imagem da música (url)</label>
+        <input type="text" id="ipt_img" name="ipt_img"><br>
         <label for="ipt_acorde">Acorde</label>
         <input type="text" id="ipt_acorde" name="ipt_acorde"><br>
         <label for="ipt_tempo">Tempo</label>
@@ -83,7 +87,9 @@
     }
     function inserirMusica(){
         var nome = ipt_nomeMusica.value;
-        if(arrayAcorde.length > 0 && nome != null){
+        var desc = ipt_desc.value
+        var img = ipt_img.value
+        if(arrayAcorde.length > 0 && nome != null && desc != null){
             fetch("/acordes/cadastrar/", {
                     method: "POST",
                     headers: {
@@ -95,7 +101,9 @@
                         acordeServer: arrayAcorde,
                         nomeMusicaServer: nome,
                         tempoServer: arrayTempo,
-                        idUsuario: sessionStorage.ID_USUARIO
+                        idUsuario: sessionStorage.ID_USUARIO,
+                        descServer: desc,
+                        imgServer: img
                     })
                 }).then(function (resposta) {
 
