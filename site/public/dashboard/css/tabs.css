@@ -12,3 +12,27 @@
     margin: auto;
     width: 20%;
 }
+#cardMusica{
+    width: 80%;
+    height: 100px;
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+ 
+#cardMusica h3{
+    margin: auto;
+    width: 20%;
+    height: 20px;
+    margin-top: 10px;
+}
+#cardMusica h5{
+    margin: auto;
+    width: 20%;
+    
+}
+#cardMusica a{
+    width: 100px;
+    margin: auto;
+}

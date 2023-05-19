@@ -22,5 +22,6 @@ function consultarAcorde(){
     return database.executar(instrucao);
 }
 module.exports = {
-    cadastrarAcorde
+    cadastrarAcorde,
+    consultarAcorde
 }
