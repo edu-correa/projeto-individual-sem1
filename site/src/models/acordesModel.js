@@ -11,3 +11,16 @@ function cadastrarAcorde(acorde, nomeMusica, tempo, idUsuario){
 module.exports = {
     cadastrarAcorde
 }
+
+
+function consultarAcorde(){
+    console.log("vou consultar");
+    var instrucao = `
+        SELECT * FROM  musica;
+    `;
+    console.log(instrucao);
+    return database.executar(instrucao);
+}
+module.exports = {
+    cadastrarAcorde
+}

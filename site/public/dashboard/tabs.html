@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/tabs.css">
+</head>
+<body>
+    <nav>
+        <ul class="title">
+            <li><a href="index.html">Acoustic Man</a></li>
+        </ul>
+        <ul>
+            <li><a href="cifra.html">Cifras</a></li>
+            <li><a href="tabs.html">Tabs</a></li>
+            <li><a href="perfil.html" id="nomeUser"></a></li>
+
+        </ul>
+    
+    </nav>
+    <div id="search" class="search">
+        <h1>Recomendados</h1>
+
+    </div>
+
+</body>
+</html>
+<script>
+    if (sessionStorage.NOME_USUARIO != undefined) {
+        nomeUser.innerHTML = sessionStorage.NOME_USUARIO;
+    }
+    else {
+        location.href = '../login.html'
+    }
+    fetch("/acordes/consulta", { cache: 'no-store' }).then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        response.json().then(function (novoRegistro) {
+                            search.innerHTML = "<h1>Recomendados</h1>"
+                            for(var i = 0; i< novoRegistro.length; i++){
+                                search.innerHTML += `
+                                    <div id='cardMusica'>
+                                        <h3>${novoRegistro[i].nomeMusica}</h3>
+                                        <h5>${novoRegistro[i].idMusica}</h5>
+                                        <h3>${novoRegistro[i].idUsuario}</h3>
+                                    </div>
+                                `;
+                            }
+                        }).catch(() =>{
+                            alert("algo deu errado ao compilar os dados")
+                        })
+                    } else {
+                        throw ("Houve um erro ao tentar realizar o cadastro!");
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    alert("Houve um erro ao realizar o cadastro.");
+                });
+</script>

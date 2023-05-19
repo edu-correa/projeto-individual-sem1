@@ -1,0 +1,14 @@
+.search{
+    width: 70%;
+    height: auto;
+    border: solid 1px black;
+    background-color: rgb(221, 171, 114);
+    margin: auto;
+    margin-top: 10px;
+    display: block;
+    padding-top: 10px;
+}
+.search h1{
+    margin: auto;
+    width: 20%;
+}
