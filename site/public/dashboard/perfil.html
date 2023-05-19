@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaTech | Tempo Real</title>
-
+    <script src="js/todosAcordes.js">  </script>
     <link rel="stylesheet" href="../css/style.css">
 
     <script src="../js/funcoes.js"></script>
@@ -32,15 +32,53 @@
 
       
     </nav>
-    <h1>
-        Seja bem vindo, <span id="nomeUserTitulo"></span>
-    </h1>
+    <div id="alerta">
+        <h1>
+            Seja bem vindo, <span id="nomeUserTitulo"></span>
+        </h1>
+        <h3>
+            nesta página você poderá cadastrar novas músicas com base em seus acordes
+        </h3>
+    </div>
+    <div id="form">
+        <label for="ipt_nomeMusica">Nome da música</label>
+        <input type="text" id="ipt_nomeMusica" name="ipt_nomeMusica"><br>
+        <label for="ipt_acorde">Acorde</label>
+        <input type="text" id="ipt_acorde" name="ipt_acorde"><br>
+        <label for="ipt_tempo">Tempo</label>
+        <input type="text" id="ipt_tempo" name="ipt_tempo">
+        <button onclick="inserirAcorde()">Inserir acorde</button>
+    </div>
     </body>
 
 <script>
     if(sessionStorage.NOME_USUARIO != undefined){
         nomeUser.innerHTML = sessionStorage.NOME_USUARIO;
         nomeUserTitulo.innerHTML = sessionStorage.NOME_USUARIO;
+    }
+    else{
+        location.href = '../login.html'
+    }
+    arrayAcorde = []
+    arrayTempo = []
+    
+    function inserirAcorde(){
+        acorde = ipt_acorde.value;
+        tempo = Number(ipt_tempo.value);
+        alert(tempo)
+        if(acorde != null && tempo != null && isNaN(tempo) != false ){
+            if(verifyAcorde(acorde) == true){
+                arrayAcorde.push(acorde);
+                arrayTempo.push(tempo);
+            }
+            else{
+                alert("Insira um acorde válido")
+            }
+        }
+        else{
+            alert("preencha os campos")
+        }
+        console.log(arrayAcorde);
     }
 </script>
 </html>
