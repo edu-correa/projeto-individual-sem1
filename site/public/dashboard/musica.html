@@ -65,6 +65,7 @@
                         acordes.innerHTML = `<p>${novoRegistro[i].acordes}</p>`
                         acordes.innerHTML += "<br>"
                         console.log(todosAcordes)
+                        console.log(novoRegistro[i].tempo)
                         if (novoRegistro[i].tempo == "2/4") {
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
@@ -78,6 +79,14 @@
                             si.innerHTML += " -- -- --"
                             sol.innerHTML += " -- <b>2</b>- --"
                             la.innerHTML += " -- <b>2</b>- --"
+                            re.innerHTML += " -- -- --"
+                            mizona.innerHTML += " -- -- --"
+                        }
+                        else if(novoRegistro[i].tempo == "4/4"){
+                            mizinha.innerHTML += " -- -- --"
+                            si.innerHTML += " -- -- --"
+                            sol.innerHTML += " -- <b>4</b>- --"
+                            la.innerHTML += " -- <b>4</b>- --"
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
                         }
@@ -109,6 +118,14 @@
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
                             sol.innerHTML += " -- <b>9</b>- --"
+                            la.innerHTML += " -- <b>8</b>- --"
+                            re.innerHTML += " -- -- --"
+                            mizona.innerHTML += " -- -- --"
+                        }
+                        else if(novoRegistro[i].tempo == "12/8"){
+                            mizinha.innerHTML += " -- -- --"
+                            si.innerHTML += " -- -- --"
+                            sol.innerHTML += " -- <b>12</b>- --"
                             la.innerHTML += " -- <b>8</b>- --"
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
