@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/musica.css">
+    <title>Musica</title>
+</head>
+
+<body onload="consultar()">
+    <nav>
+        <ul class="title">
+            <li><a href="index.html">Acoustic Man</a></li>
+        </ul>
+        <ul>
+            <li><a href="cifra.html">Cifras</a></li>
+            <li><a href="tabs.html">Tabs</a></li>
+            <li><a href="perfil.html" id="nomeUser"></a></li>
+
+        </ul>
+
+    </nav>
+    <div id="imagem"></div>
+    <div id="titulo"></div>
+    <div id="desc"></div>
+    <div id="acordes">
+
+    </div>
+    <div id="mizinha"></div>
+    <div id="si"></div>
+    <div id="sol"></div>
+    <div id="re"></div>
+    <div id="la"></div>
+    <div id="mizona"></div>
+</body>
+
+</html>
+<script>
+    if (sessionStorage.NOME_USUARIO != undefined) {
+        nomeUser.innerHTML = sessionStorage.NOME_USUARIO;
+    }
+    else {
+        location.href = '../login.html'
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const idMusica = urlParams.get("idMusica") // livros
+    if (idMusica == undefined || idMusica == null) {
+        location.href = "tabs.html"
+    }
+    function consultar() {
+        fetch(`/acordes/musica/${idMusica}`).then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                resposta.json().then(function (novoRegistro) {
+
+                    for (var i = 0; i < novoRegistro.length; i++) {
+                        var todosAcordes = novoRegistro[i].acordes.split(',');
+                        imagem.innerHTML = `<img src='${novoRegistro[i].img}'>`;
+                        titulo.innerHTML = `<h2>${novoRegistro[i].nomeMusica}</h2><br>`;
+                        desc.innerHTML = `<h3>${novoRegistro[i].descricao}</h3><br>`;
+                        acordes.innerHTML = `<p>${novoRegistro[i].acordes}</p>`
+                        acordes.innerHTML += "<br>"
+                        console.log(todosAcordes)
+                        if (novoRegistro[i].tempo == "2/4") {
+                            mizinha.innerHTML += " -- -- --"
+                            si.innerHTML += " -- -- --"
+                            sol.innerHTML += " -- <b>2</b>- --"
+                            la.innerHTML += " -- <b>4</b>- --"
+                            re.innerHTML += " -- -- --"
+                            mizona.innerHTML += " -- -- --"
+                        }
+                        else {
+                            mizinha.innerHTML += " -- -- --"
+                            si.innerHTML += " -- -- --"
+                            sol.innerHTML += " -- <b>2</b>- --"
+                            la.innerHTML += " -- <b>2</b>- --"
+                            re.innerHTML += " -- -- --"
+                            mizona.innerHTML += " -- -- --"
+                        }
+                        for (var h = 0; h < todosAcordes.length; h++) {
+                            if (todosAcordes[h] == "A7") {
+                                mizinha.innerHTML += " -- -- --"
+                                si.innerHTML += " -- 2- --"
+                                sol.innerHTML += " -- -- --"
+                                la.innerHTML += " -- 2- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- -- --"
+                                console.log('a7')
+                            }
+                            else if (todosAcordes[h] == "A7+") {
+                                mizinha.innerHTML += " -- -- -- "
+                                si.innerHTML += " -- 2- --"
+                                sol.innerHTML += " -- 1- --"
+                                la.innerHTML += " -- 2- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                            }
+                            else if (todosAcordes[h] == "Am") {
+                                mizinha.innerHTML += " -- -- -- "
+                                si.innerHTML += " -- 1- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- 2- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                            }
+                            else if (todosAcordes[h] == "B") {
+                                mizinha.innerHTML += " -- -- -- "
+                                si.innerHTML += " -- 4- --"
+                                sol.innerHTML += " -- 4- --"
+                                la.innerHTML += " -- 4- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                            }
+                            else if (todosAcordes[h] == "Bm") {
+                                mizinha.innerHTML += " -- -- -- "
+                                si.innerHTML += " -- 4- --"
+                                sol.innerHTML += " -- 5- --"
+                                la.innerHTML += " -- 5- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                            }
+                            else if (todosAcordes[h] == "B7") {
+                                mizinha.innerHTML += " -- 2- -- "
+                                si.innerHTML += " -- -- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- 1- --"
+                                re.innerHTML += " -- 2- --"
+                                mizona.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                            }
+                            else if (todosAcordes[h] == "B7+") {
+                                mizinha.innerHTML += " -- 6- -- "
+                                si.innerHTML += " -- 7- --"
+                                sol.innerHTML += " -- 8- --"
+                                la.innerHTML += " -- 9- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                            }
+                            else if (todosAcordes[h] == "Bb") {
+                                mizinha.innerHTML += " -- 1- -- "
+                                si.innerHTML += " -- 3- --"
+                                sol.innerHTML += " -- 3- --"
+                                la.innerHTML += " -- 3- --"
+                                re.innerHTML += " -- 1- --"
+                                mizona.innerHTML += " -- x- -- "
+                            }
+                            else if (todosAcordes[h] == "Bbm") {
+                                mizinha.innerHTML += " -- 1- -- "
+                                si.innerHTML += " -- 2- --"
+                                sol.innerHTML += " -- 3- --"
+                                la.innerHTML += " -- 3- --"
+                                re.innerHTML += " -- 1- --"
+                                mizona.innerHTML += " -- x- -- "
+                            }
+                            else if (todosAcordes[h] == "Bb7+") {
+                                mizinha.innerHTML += " -- 1- -- "
+                                si.innerHTML += " -- 3- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- 3- --"
+                                re.innerHTML += " -- 1- --"
+                                mizona.innerHTML += " -- x- -- "
+                            }
+                            else if (todosAcordes[h] == "C") {
+                                mizinha.innerHTML += " -- -- -- "
+                                si.innerHTML += " -- 1- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- 3- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- x- -- "
+                            }
+                            else if (todosAcordes[h] == "Cm") {
+                                mizinha.innerHTML += " -- -- -- "
+                                si.innerHTML += " -- 4- --"
+                                sol.innerHTML += " -- 5- --"
+                                la.innerHTML += " -- 5- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- -- -- "
+                            }
+                            else if (todosAcordes[h] == "C7") {
+                                mizinha.innerHTML += " -- -- -- "
+                                si.innerHTML += " -- 1- --"
+                                sol.innerHTML += " -- 3- --"
+                                la.innerHTML += " -- 2- --"
+                                re.innerHTML += " -- 3- --"
+                                mizona.innerHTML += " -- x- -- "
+                            }
+                            else if (todosAcordes[h] == "C#7") {
+                                mizinha.innerHTML += " -- 4- -- "
+                                si.innerHTML += " -- 6- --"
+                                sol.innerHTML += " -- 5- --"
+                                la.innerHTML += " -- 6- --"
+                                re.innerHTML += " -- 4- --"
+                                mizona.innerHTML += " -- x- -- "
+                            }
+                            else if (todosAcordes[h] == "C#m") {
+                                mizinha.innerHTML += " -- -- -- "
+                                si.innerHTML += " -- -- --"
+                                sol.innerHTML += " -- 1- --"
+                                la.innerHTML += " -- 2- --"
+                                re.innerHTML += " -- 4- --"
+                                mizona.innerHTML += " -- x- -- "
+                            }
+                            else if (todosAcordes[h] == "C#7+") {
+                                mizinha.innerHTML += " -- 4- -- "
+                                si.innerHTML += " -- 6- --"
+                                sol.innerHTML += " -- 5- --"
+                                la.innerHTML += " -- 6- --"
+                                re.innerHTML += " -- 4- --"
+                                mizona.innerHTML += " -- x- -- "
+                            }
+                            else if (todosAcordes[h] == "D") {
+                                mizinha.innerHTML += " -- 2- -- "
+                                si.innerHTML += " -- 3- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- -- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- -- -- "
+                            }
+                            else if (todosAcordes[h] == "Dm") {
+                                mizinha.innerHTML += " -- 1- -- "
+                                si.innerHTML += " -- 3- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- -- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- -- -- "
+                            }
+                            else if (todosAcordes[h] == "D7+") {
+                                mizinha.innerHTML += " -- 2- -- "
+                                si.innerHTML += " -- 2- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- 0- --"
+                                re.innerHTML += " -- x- --"
+                                mizona.innerHTML += " - x- -- "
+                            }
+                            else if (todosAcordes[h] == "E") {
+                                mizinha.innerHTML += " -- 0- -- "
+                                si.innerHTML += " -- 0- --"
+                                sol.innerHTML += " -- 1- --"
+                                la.innerHTML += " -- 2- --"
+                                re.innerHTML += " -- 2- --"
+                                mizona.innerHTML += " -- 0- -- "
+                            }
+                            else if (todosAcordes[h] == "Em") {
+                                mizinha.innerHTML += " -- 0- -- "
+                                si.innerHTML += " -- 0- --"
+                                sol.innerHTML += " -- 0- --"
+                                la.innerHTML += " -- 2- --"
+                                re.innerHTML += " -- 2- --"
+                                mizona.innerHTML += " -- 0- -- "
+                            }
+                            else if (todosAcordes[h] == "E7") {
+                                mizinha.innerHTML += " -- 4- -- "
+                                si.innerHTML += " -- 3- --"
+                                sol.innerHTML += " -- 4- --"
+                                la.innerHTML += " -- 2- --"
+                                re.innerHTML += " -- -- --"
+                                mizona.innerHTML += " -- 0- -- "
+                            }
+                            else if (todosAcordes[h] == "E7+") {
+                                mizinha.innerHTML += " -- x- -- "
+                                si.innerHTML += " -- 0- --"
+                                sol.innerHTML += " -- 1- --"
+                                la.innerHTML += " -- 1- --"
+                                re.innerHTML += " -- 2- --"
+                                mizona.innerHTML += " -- 0- -- "
+                            }
+                            else if (todosAcordes[h] == "F") {
+                                mizinha.innerHTML += " -- 0- -- "
+                                si.innerHTML += " -- 0- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- 3- --"
+                                re.innerHTML += " -- 3- --"
+                                mizona.innerHTML += " -- 0- -- "
+                            }
+                            else if (todosAcordes[h] == "Fm") {
+                                mizinha.innerHTML += " -- 0- -- "
+                                si.innerHTML += " -- 0- --"
+                                sol.innerHTML += " -- 0- --"
+                                la.innerHTML += " -- 3- --"
+                                re.innerHTML += " -- 3- --"
+                                mizona.innerHTML += " -- 0- -- "
+                            }
+                            else if (todosAcordes[h] == "F7") {
+                                mizinha.innerHTML += " -- 1- -- "
+                                si.innerHTML += " -- 1- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- 1- --"
+                                re.innerHTML += " -- 3- --"
+                                mizona.innerHTML += " -- 1- -- "
+                            }
+                            else if (todosAcordes[h] == "F7+") {
+                                mizinha.innerHTML += " -- 0- -- "
+                                si.innerHTML += " -- 1- --"
+                                sol.innerHTML += " -- 2- --"
+                                la.innerHTML += " -- 3- --"
+                                re.innerHTML += " -- x- --"
+                                mizona.innerHTML += " -- x- -- "
+                            }
+                            else if (todosAcordes[h] == "F#7+") {
+                                mizinha.innerHTML += " -- 2- -- "
+                                si.innerHTML += " -- 2- --"
+                                sol.innerHTML += " -- 3- --"
+                                la.innerHTML += " -- 2- --"
+                                re.innerHTML += " -- 4- --"
+                                mizona.innerHTML += " -- 2- -- "
+                            }
+                            else if (todosAcordes[h] == "G") {
+                                mizinha.innerHTML += " -- 3- -- "
+                                si.innerHTML += " -- 0- --"
+                                sol.innerHTML += " -- 0- --"
+                                la.innerHTML += " -- 0- --"
+                                re.innerHTML += " -- 2- --"
+                                mizona.innerHTML += " -- 3- -- "
+                            }
+                            else if (todosAcordes[h] == "Gm") {
+                                mizinha.innerHTML += " -- 3- -- "
+                                si.innerHTML += " -- 3- --"
+                                sol.innerHTML += " -- 3- --"
+                                la.innerHTML += " -- 5- --"
+                                re.innerHTML += " -- 5- --"
+                                mizona.innerHTML += " -- 3- -- "
+                            }
+                            else if (todosAcordes[h] == "G7") {
+                                mizinha.innerHTML += " -- 1- -- "
+                                si.innerHTML += " -- 0- --"
+                                sol.innerHTML += " -- 0- --"
+                                la.innerHTML += " -- 0- --"
+                                re.innerHTML += " -- 2- --"
+                                mizona.innerHTML += " -- 3- -- "
+                            }
+
+                            else if (todosAcordes[h] == "G7+") {
+                                mizinha.innerHTML += " -- x- -- "
+                                si.innerHTML += " -- 3- --"
+                                sol.innerHTML += " -- 4- --"
+                                la.innerHTML += " -- 4- --"
+                                re.innerHTML += " -- x- --"
+                                mizona.innerHTML += " -- 3- -- "
+                            }
+                            else if (todosAcordes[h] == "G#7+") {
+                                mizinha.innerHTML += " -- x- -- "
+                                si.innerHTML += " -- 3- --"
+                                sol.innerHTML += " -- 0- --"
+                                la.innerHTML += " -- 3- --"
+                                re.innerHTML += " -- 2- --"
+                                mizona.innerHTML += " -- 3- -- "
+                            }
+                            
+                            else {
+                                mizinha.innerHTML += " -- -- -- "
+                                si.innerHTML += " -- -- -- "
+                                sol.innerHTML += " -- 2- -- "
+                                la.innerHTML += " -- 4- -- "
+                                re.innerHTML += " -- -- -- "
+                                mizona.innerHTML += " -- -- -- "
+                                console.log(todosAcordes[h])
+                            }
+                        }
+                    }
+                }).catch(() => {
+                    alert("algo deu errado ao compilar os dados")
+                })
+            } else {
+                throw ("Houve um erro ao tentar consultar!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            alert("Houve um erro ao realizar a consulta.");
+        });
+    }
+</script>

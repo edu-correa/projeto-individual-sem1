@@ -8,10 +8,6 @@ function cadastrarAcorde(acorde, nomeMusica, tempo, idUsuario, desc, img){
     console.log(instrucao);
     return database.executar(instrucao);
 }
-module.exports = {
-    cadastrarAcorde
-}
-
 
 function consultarAcorde(){
     console.log("vou consultar");
@@ -21,7 +17,18 @@ function consultarAcorde(){
     console.log(instrucao);
     return database.executar(instrucao);
 }
+
+function musica(idMusica){
+    console.log("vou consultar");
+    var instrucao = `
+        SELECT * FROM  musica WHERE idMusica = ${idMusica};
+    `;
+    console.log(instrucao);
+    return database.executar(instrucao);
+}
+musica
 module.exports = {
     cadastrarAcorde,
-    consultarAcorde
+    consultarAcorde,
+    musica
 }

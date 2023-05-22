@@ -53,8 +53,32 @@ function consultar(req, res) {
     );
 
 }
+function musica(req, res) {
+    console.log("Entrei no controller dos acordes")
+
+    const idMusica = req.params.idMusica;
+    
+    modelAcordes.musica(idMusica).then(
+        async function (resultado) {
+            respostas = await resultado
+            if (respostas.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+
+}
 
 module.exports = {
     cadastrar,
-    consultar
+    consultar,
+    musica
 }
