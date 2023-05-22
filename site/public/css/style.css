@@ -39,6 +39,7 @@ nav ul{
     height: 700px;
     background-image: url("https://cdn.wallpapersafari.com/97/64/gWXD6u.jpg");
     background-repeat: no-repeat;
+    background-size: cover;
     object-fit: contain ;
     margin-bottom: 80px;
 }

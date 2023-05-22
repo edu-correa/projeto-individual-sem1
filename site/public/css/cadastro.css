@@ -1,3 +1,8 @@
+body{
+    background-image: url('https://cdn.suwalls.com/wallpapers/music/guitar-in-the-forest-19122-1920x1080.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .card {
     width: 30%;
     background-color: #e5e5e5;
@@ -25,9 +30,10 @@
 
 .formulario {
     display: flex;
-    height: 90%;
+    height: 400px;
     width: 80%;
     justify-content: space-around;
+    padding-top: 10px;
     flex-direction: column;
 }
 
@@ -70,4 +76,8 @@
     align-items: center;
     justify-content: center;
     padding-top: 40px;
+}
+.footer{
+    height: 100px;
+    bottom: 0px;
 }

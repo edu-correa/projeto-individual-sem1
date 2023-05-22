@@ -2,7 +2,7 @@
     width: 70%;
     height: auto;
     border: solid 1px black;
-    background-color: rgb(221, 171, 114);
+    background-color: #e5e5e5;
     margin: auto;
     margin-top: 10px;
     display: block;
@@ -14,33 +14,43 @@
 }
 #cardMusica{
     width: 80%;
-    height: 100px;
+    height: 150px;
     border: 1px solid black;
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
-    justify-content: space-around;
+    /*justify-content: space-around;*/
+    background-color: white;
+    padding: 15px;
 }
  
-#cardMusica h3{
-    margin: auto;
-    width: 20%;
+#cardMusica h3, h2{
+    width: 100%;
     height: 20px;
     margin-top: 10px;
-    display: flex;
-    text-align: center;
 }
 #cardMusica h5{
     margin: auto;
-    width: 20%;
-    text-align: center;
+    width: 100%;
 }
 #cardMusica a{
     width: 100px;
-    margin: auto;
 }
 #cardMusica img{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
+    padding-right: 0px;
+    border-radius: 10px;
+}
+#info{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    margin-left: 20px;
+    padding: 10px;
+}
+#cardMusica h3{
+    color: rgb(80, 80, 80);
 }

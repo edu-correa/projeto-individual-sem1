@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>Acoustic | Perfil</title>
     <script src="js/todosAcordes.js">  </script>
     <link rel="stylesheet" href="../css/style.css">
 
@@ -66,19 +66,28 @@
         location.href = '../login.html'
     }
     arrayAcorde = []
-    arrayTempo = []
+    tempoFinal = "";
 
     function inserirAcorde() {
         acorde = ipt_acorde.value;
-        tempo = Number(ipt_tempo.value);
+        tempo = ipt_tempo.value;
         nome = ipt_nomeMusica.value
-        if (acorde != null && tempo != null && isNaN(tempo) == false && nome != null) {
+        if (acorde != null && tempo != null && nome != null) {
             if (verifyAcorde(acorde) == true) {
-                arrayAcorde.push(acorde);
-                arrayTempo.push(tempo);
-                res.innerHTML = `Acordes: ${arrayAcorde}  | <BR> 
-                    Tempos: ${arrayTempo}<BR>`;
+                if(tempo == "4/4" || tempo =='2/2' || tempo =='2/4' || tempo =='3/4' || tempo =='3/4' || tempo =='2/8' || tempo =='6/8' || tempo =='6/8' || tempo == '9/8' || tempo == "12/8"){
+                    tempoFinal = tempo
+                    arrayAcorde.push(acorde);
+                    res.innerHTML = `Acordes: ${arrayAcorde}  | <BR> 
+                    Tempos: ${tempoFinal}<BR>`;
 
+                }
+                else{
+                    alert("Erro: insira um tempo válido \n(4/4, 2/2, 2/4, 3/4, 2/8, 6/8, 9/8, 12/8)")
+                }
+              
+            }
+            else{
+                alert("Esse acorde não existe")
             }
         }
         else {
@@ -100,7 +109,7 @@
                         // Agora vá para o arquivo routes/usuario.js
                         acordeServer: arrayAcorde,
                         nomeMusicaServer: nome,
-                        tempoServer: arrayTempo,
+                        tempoServer: tempoFinal,
                         idUsuario: sessionStorage.ID_USUARIO,
                         descServer: desc,
                         imgServer: img

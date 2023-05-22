@@ -48,10 +48,12 @@
                 for (var i = 0; i < novoRegistro.length; i++) {
                     search.innerHTML += `
                                     <div id='cardMusica'>
-                                        <img src='${novoRegistro[i].img}>'
-                                        <h3>Titulo: ${novoRegistro[i].nomeMusica}</h3>
-                                        <h3>descrição: ${novoRegistro[i].descricao}</h3>
-                                        <a href='musica.html/${novoRegistro[i].idMusica}'>Ir para musica</a> 
+                                        <img src='${novoRegistro[i].img}'>
+                                        <div id='info'>
+                                            <h2>${novoRegistro[i].nomeMusica}</h2><br>
+                                            <h3>${novoRegistro[i].descricao}</h3><br>
+                                            <a href='musica.html/${novoRegistro[i].idMusica}'>Ir para musica</a>         
+                                        </div>
                                     </div>
                                 `;
                 }
