@@ -10,10 +10,10 @@
     <title>Musica</title>
 </head>
 
-<body onload="consultar()">
+<body onload="consultar(),  carregou()">
     <nav>
         <ul class="title">
-            <li><a href="index.html">Acoustic Man</a></li>
+            <li><a href="index.html">Acoustic</a></li>
         </ul>
         <ul>
             <li><a href="cifra.html">Cifras</a></li>
@@ -29,12 +29,37 @@
     <div id="acordes">
 
     </div>
-    <div id="mizinha"></div>
-    <div id="si"></div>
-    <div id="sol"></div>
-    <div id="re"></div>
-    <div id="la"></div>
-    <div id="mizona"></div>
+    <div id="amostragemAcordes">
+        <div id="mizinha"></div>
+        <div id="si"></div>
+        <div id="sol"></div>
+        <div id="re"></div>
+        <div id="la"></div>
+        <div id="mizona"></div>
+    </div>
+
+    <div id="comentarios">
+        <h1>Comentários e avaliações</h1>
+        <div id="seuComentario">
+            <h3>Deixe seu comentário</h3>
+            <input type="hidden" name="" id="nota" value="0">
+            <div class='star_rating' id='div-estrelas'>
+                <label class='star'>&#9734;</label>
+                <label class='star'>&#9734;</label>
+                <label class='star'>&#9734;</label>       
+                <label class='star'>&#9734;</label>
+                <label class='star'>&#9734;</label>
+            </div><br>
+            <label for="tituloComentario">Titulo</label>
+            <input type="text" id="tituloComentario" name="tituloComentario"><br>
+            <label for="corpoComentario">Comentário</label>
+            <input type="text" id="corpoComentario" name="corpoComentario"><br>
+            <button onclick="comentar()">Enviar</button>
+        </div>
+        <div id="sectionComentarios">
+            
+        </div>
+    </div>
 </body>
 
 </html>
@@ -49,6 +74,11 @@
     const idMusica = urlParams.get("idMusica") // livros
     if (idMusica == undefined || idMusica == null) {
         location.href = "tabs.html"
+    }
+    function comentar(){
+        var corpo = corpoComentario.value;
+        var titulo = tituloComentario.value;
+        var notaf = nota.value
     }
     function consultar() {
         fetch(`/acordes/musica/${idMusica}`).then(function (resposta) {
@@ -74,7 +104,7 @@
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
                         }
-                        else if(novoRegistro[i].tempo == "2/2"){
+                        else if (novoRegistro[i].tempo == "2/2") {
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
                             sol.innerHTML += " -- <b>2</b>- --"
@@ -82,7 +112,7 @@
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
                         }
-                        else if(novoRegistro[i].tempo == "4/4"){
+                        else if (novoRegistro[i].tempo == "4/4") {
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
                             sol.innerHTML += " -- <b>4</b>- --"
@@ -90,7 +120,7 @@
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
                         }
-                        else if(novoRegistro[i].tempo == "3/2"){
+                        else if (novoRegistro[i].tempo == "3/2") {
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
                             sol.innerHTML += " -- <b>3</b>- --"
@@ -98,7 +128,7 @@
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
                         }
-                        else if(novoRegistro[i].tempo == "2/8"){
+                        else if (novoRegistro[i].tempo == "2/8") {
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
                             sol.innerHTML += " -- <b>2</b>- --"
@@ -106,7 +136,7 @@
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
                         }
-                        else if(novoRegistro[i].tempo == "6/8"){
+                        else if (novoRegistro[i].tempo == "6/8") {
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
                             sol.innerHTML += " -- <b>6</b>- --"
@@ -114,7 +144,7 @@
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
                         }
-                        else if(novoRegistro[i].tempo == "9/8"){
+                        else if (novoRegistro[i].tempo == "9/8") {
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
                             sol.innerHTML += " -- <b>9</b>- --"
@@ -122,7 +152,7 @@
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
                         }
-                        else if(novoRegistro[i].tempo == "12/8"){
+                        else if (novoRegistro[i].tempo == "12/8") {
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
                             sol.innerHTML += " -- <b>12</b>- --"
@@ -411,7 +441,7 @@
                                 re.innerHTML += " -- 2- --"
                                 mizona.innerHTML += " -- 3- -- "
                             }
-                            
+
                             else {
                                 mizinha.innerHTML += " -- -- -- "
                                 si.innerHTML += " -- -- -- "
@@ -434,4 +464,35 @@
             alert("Houve um erro ao realizar a consulta.");
         });
     }
+   function carregou(){
+    const allStars = document.querySelectorAll('.star');
+    allStars.forEach((star, i) => {
+        star.onclick = function() {
+            let current_star_level = i + 1;
+            allStars.forEach((star, j) => {
+                if (current_star_level >= j + 1) {
+                    star.innerHTML = '&#9733';
+                    document.getElementById("nota").value = j + 1
+                } else {
+                    star.innerHTML = '&#9734';
+                }
+            })
+        }
+    })
+    
+    const estrelas = document.querySelectorAll('.starComent');
+    let nota = document.querySelector('.nota').value;
+    estrelas.forEach((estrela, e) => {
+        if(nota >= e + 1)
+        {
+            estrela.innerHTML = '&#9733';
+        }
+        else
+        {
+            estrela.innerHTML = '&#9734';
+        }
+        
+    })
+   
+   }
 </script>

@@ -1,0 +1,28 @@
+#form{
+    border: 1px solid black;
+    width: 45%;
+    height: 300px;
+    margin: auto;
+    padding: 20px;
+}
+#form input{
+    padding: 12px;
+    margin: auto;
+    width: 120px;
+}
+#form label{
+    margin: auto;
+    width: 90px;
+}
+
+#form button{
+    width:70px;
+}
+
+#alerta{
+    width: 50%;
+    height: 100px;
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+}

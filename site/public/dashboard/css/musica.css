@@ -39,3 +39,37 @@ body{
     justify-content: center;
     align-items: center;
 }
+#amostragemAcordes{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.star_rating {
+    user-select: none;
+    background-color: unset;
+    width: 20%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.star {
+    font-size: 5rem;
+    color: #ff9800;
+    background-color: unset;
+    border: none;
+}
+.star2 {
+    font-size: 3rem;
+    color: #ff9800;
+    background-color: unset;
+    border: none;
+}
+
+.star:hover {
+    cursor: pointer;
+}
