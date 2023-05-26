@@ -13,7 +13,7 @@
 <body onload="consultar(),  carregou(), consultarComentario()">
     <nav>
         <ul class="title">
-            <li><a href="index.html">Acoustic</a></li>
+            <li><a href="../index.html">Acoustic</a></li>
         </ul>
         <ul>
             <li><a href="cifra.html">Cifras</a></li>
@@ -39,26 +39,30 @@
     </div>
 
     <div id="comentarios">
-        <h1>Comentários e avaliações</h1>
-        <div id="seuComentario">
-            <h3>Deixe seu comentário</h3>
-            <input type="hidden" name="" id="nota" value="0">
-            <div class='star_rating' id='div-estrelas'>
-                <label class='star'>&#9734;</label>
-                <label class='star'>&#9734;</label>
-                <label class='star'>&#9734;</label>       
-                <label class='star'>&#9734;</label>
-                <label class='star'>&#9734;</label>
-            </div><br>
-            <label for="tituloComentario">Titulo</label>
-            <input type="text" id="tituloComentario" name="tituloComentario"><br>
-            <label for="corpoComentario">Comentário</label>
-            <input type="text" id="corpoComentario" name="corpoComentario"><br>
-            <button onclick="comentar()">Enviar</button>
-        </div>
-        <div id="sectionComentarios">
+        
+        <div id="ssComentario">
+            <h1 id="alertCom">Comentários e avaliações</h1>
+            <div class="seuComentario">
+                <h3>Deixe seu comentário</h3>
+                <input type="hidden" name="" id="nota" value="0">
+                <div class='star_rating' id='div-estrelas'>
+                    <label class='star'>&#9734;</label>
+                    <label class='star'>&#9734;</label>
+                    <label class='star'>&#9734;</label>       
+                    <label class='star'>&#9734;</label>
+                    <label class='star'>&#9734;</label>
+                </div><br>
+                <label for="tituloComentario" class="lbl_tit">Titulo</label>
+                <input type="text" id="tituloComentario" name="tituloComentario"><br>
+                <label for="corpoComentario" class="lbl_com">Comentário</label>
+                <input type="text" id="corpoComentario" name="corpoComentario"><br>
+                <button onclick="comentar()">Enviar</button>
+            </div>
+            <div id="sectionComentarios">
             
+            </div>
         </div>
+        
     </div>
 </body>
 
@@ -121,12 +125,17 @@
     function consultarComentario(){
         fetch(`/acordes/consultarComentario/${idMusica}`).then(function (resposta) {
             console.log("resposta: ", resposta);
-            alert('entrei no fetch')
             if (resposta.ok) {
                 resposta.json().then(function (jsComentarios) {
-                    alert(jsComentarios)
                     for (var i = 0; i < jsComentarios.length; i++) {
-                        sectionComentarios.innerHTML = jsComentarios[i].corpo;
+                        sectionComentarios.innerHTML = `
+                            <div id='coment'>
+                                <h3>Nota: ${jsComentarios[i].nota}</h3>
+                                <h1 id='com_titulo'>${jsComentarios[i].titulo}</h1>
+                                <p>${jsComentarios[i].corpo}</p>    
+                            </div>
+
+                        `;
                     }
                 }).catch(() => {
                     alert("algo deu errado ao compilar os dados")

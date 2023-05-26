@@ -57,6 +57,38 @@ body{
     margin-left: 2rem;
 }
 
+#ssComentario{
+    width: 80%;
+    height: auto;
+    margin: auto;
+}
+#alertCom {
+    width: 400px;
+    height: auto;
+    margin: auto;
+    text-align: center;
+}
+.seuComentario{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    margin: auto;
+}
+.seuComentario h3{
+    width: 400px;
+    margin: auto;
+    font-size: 25px;
+    text-align: center;
+}
+.seuComentario input{
+    width: 200px;
+}
+.seuComentario button{
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+}
+
 .star {
     font-size: 5rem;
     color: #ff9800;
@@ -72,4 +104,7 @@ body{
 
 .star:hover {
     cursor: pointer;
+}
+.lbl_tit, .lbl_com{
+    font-size: 18px;
 }
