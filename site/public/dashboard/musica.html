@@ -10,7 +10,7 @@
     <title>Musica</title>
 </head>
 
-<body onload="consultar(),  carregou()">
+<body onload="consultar(),  carregou(), consultarComentario()">
     <nav>
         <ul class="title">
             <li><a href="index.html">Acoustic</a></li>
@@ -119,7 +119,25 @@
         }
     }
     function consultarComentario(){
-        
+        fetch(`/acordes/consultarComentario/${idMusica}`).then(function (resposta) {
+            console.log("resposta: ", resposta);
+            alert('entrei no fetch')
+            if (resposta.ok) {
+                resposta.json().then(function (jsComentarios) {
+                    alert(jsComentarios)
+                    for (var i = 0; i < jsComentarios.length; i++) {
+                        sectionComentarios.innerHTML = jsComentarios[i].corpo;
+                    }
+                }).catch(() => {
+                    alert("algo deu errado ao compilar os dados")
+                })
+            } else {
+                throw ("Houve um erro ao tentar consultar!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            alert("Houve um erro ao realizar a consulta 219219.");
+        });
     }
     function consultar() {
         fetch(`/acordes/musica/${idMusica}`).then(function (resposta) {
@@ -522,7 +540,7 @@
     })
     
     const estrelas = document.querySelectorAll('.starComent');
-    let nota = document.querySelector('.nota').value;
+    let nota = document.getElementById('nota').value;
     estrelas.forEach((estrela, e) => {
         if(nota >= e + 1)
         {

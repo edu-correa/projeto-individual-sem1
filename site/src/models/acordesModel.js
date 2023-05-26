@@ -38,7 +38,7 @@ function comentar(corpo, titulo, nota, idUsuario, idMusica){
 function consultarComentario(idMusica){
     console.log("buscando comentários")
     var instrucao = `
-        SELECT * FROM comentario WHERE idMusica = ${idMusica}
+        SELECT * FROM comentario WHERE idMusica = ${idMusica};
     `;
     return database.executar(instrucao);
 }

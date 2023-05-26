@@ -109,13 +109,13 @@ function comentar(req, res) {
 }
 
 function consultarComentario(req, res){
-    var idMusica = req.body.idMusica
+    var idMusica = req.params.idMusica
     if(idMusica != null){
         modelAcordes.consultarComentario(idMusica).then(
             async (resp)=>{
-                respostas = await resp
+                var respostas = await resp
                 if (respostas.length > 0) {
-                    res.status(200).json(resultado);
+                    res.status(200).json(respostas);
                 } else {
                     res.status(204).send("Nenhum resultado encontrado!");
                 }
