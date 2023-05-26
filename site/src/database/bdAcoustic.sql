@@ -20,5 +20,15 @@ create table musica (
     img varchar(300),
 	FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
+CREATE TABLE comentario(
+	idComentario int PRIMARY KEY AUTO_INCREMENT,
+	titulo varchar(80),
+	corpo varchar(80),
+	nota decimal(3,1),
+	idUsuario int,
+	idMusica INT,
+	FOREIGN KEY (idMusica) REFERENCES musica(idMusica),
+	FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
+);
 
 SELECT * FROM musica;

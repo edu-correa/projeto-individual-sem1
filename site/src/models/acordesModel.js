@@ -26,9 +26,26 @@ function musica(idMusica){
     console.log(instrucao);
     return database.executar(instrucao);
 }
-musica
+function comentar(corpo, titulo, nota, idUsuario, idMusica){
+    console.log("vou comentar");
+    var instrucao = `
+        INSERT INTO comentario(idComentario, titulo, corpo, nota, idUsuario, idMusica) VALUES(null, '${titulo}', '${corpo}', ${nota}, ${idUsuario}, ${idMusica});
+    `;
+    console.log(instrucao);
+    return database.executar(instrucao);
+
+}
+function consultarComentario(idMusica){
+    console.log("buscando comentários")
+    var instrucao = `
+        SELECT * FROM comentario WHERE idMusica = ${idMusica}
+    `;
+    return database.executar(instrucao);
+}
 module.exports = {
     cadastrarAcorde,
     consultarAcorde,
-    musica
+    musica,
+    comentar,
+    consultarComentario
 }

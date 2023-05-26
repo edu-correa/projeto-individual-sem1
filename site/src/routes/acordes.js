@@ -13,5 +13,10 @@ router.get("/consultar", function (req,res){
 router.get("/musica/:idMusica", function (req,res){
     controllerAcordes.musica(req,res)
 })  
-
+router.post("/comentar", (req, res) => {
+    controllerAcordes.comentar(req, res);
+})
+router.get("/consultar", (req, res) => {
+    controllerAcordes.consultarComentario(req,res)
+})
 module.exports = router;

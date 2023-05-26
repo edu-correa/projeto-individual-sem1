@@ -78,7 +78,48 @@
     function comentar(){
         var corpo = corpoComentario.value;
         var titulo = tituloComentario.value;
-        var notaf = nota.value
+        var notaf = Number(nota.value);
+        if(corpo != null && titulo != null & notaf > 0){
+            fetch("/acordes/comentar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    corpoServer: corpo,
+                    tituloServer: titulo,
+                    notaServer: notaf,
+                    idMusicaServer: idMusica,
+                    idUsuarioServer: sessionStorage.ID_USUARIO
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+
+                    alert("Comentário realizado com sucesso!");
+
+                    setTimeout(() => {
+                        location.reload();
+                    }, "1000");
+
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                alert("Houve um erro ao realizar o cadastro.");
+            });
+
+            return false;
+        }
+    }
+    function consultarComentario(){
+        
     }
     function consultar() {
         fetch(`/acordes/musica/${idMusica}`).then(function (resposta) {
