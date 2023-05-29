@@ -38,7 +38,17 @@ function comentar(corpo, titulo, nota, idUsuario, idMusica){
 function consultarComentario(idMusica){
     console.log("buscando comentários")
     var instrucao = `
-        SELECT * FROM comentario WHERE idMusica = ${idMusica};
+        SELECT * FROM comentario 
+        JOIN usuario ON comentario.idUsuario = usuario.idUsuario
+        WHERE idMusica = ${idMusica};
+    `;
+    return database.executar(instrucao);
+}
+function consultarMusicasUser(idUsuario){
+    console.log("buscando musicas")
+    var instrucao = `
+        SELECT * FROM musica 
+        WHERE idUsuario = ${idUsuario};
     `;
     return database.executar(instrucao);
 }
@@ -47,5 +57,6 @@ module.exports = {
     consultarAcorde,
     musica,
     comentar,
-    consultarComentario
+    consultarComentario,
+    consultarMusicasUser
 }

@@ -2,6 +2,7 @@ body{
     background-image: url('https://cdn.suwalls.com/wallpapers/music/guitar-in-the-forest-19122-1920x1080.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100vh;
 }
 .card {
     width: 30%;
@@ -21,6 +22,7 @@ body{
 
 .card-login {
     height: 60%;
+    margin-bottom: 16%;
 }
 
 .card h2 {
@@ -79,5 +81,6 @@ body{
 }
 .footer{
     height: 100px;
-    bottom: 0px;
+    width: 100%;
+    margin: auto;
 }

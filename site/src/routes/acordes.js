@@ -19,4 +19,7 @@ router.post("/comentar", (req, res) => {
 router.get("/consultarComentario/:idMusica", (req, res) => {
     controllerAcordes.consultarComentario(req,res)
 })
+router.get("/consultarMusicasUser/:idUsuario", (req, res) => {
+    controllerAcordes.consultarMusicasUser(req,res)
+})
 module.exports = router;

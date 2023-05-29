@@ -36,6 +36,14 @@
         <div id="re"></div>
         <div id="la"></div>
         <div id="mizona"></div>
+        <br>
+        <!-- quebra de linha -->
+        <div id="mizinha2"></div>
+        <div id="si2"></div>
+        <div id="sol2"></div>
+        <div id="re2"></div>
+        <div id="la2"></div>
+        <div id="mizona2"></div>
     </div>
 
     <div id="comentarios">
@@ -68,6 +76,7 @@
 
 </html>
 <script>
+    // verificação do login
     if (sessionStorage.NOME_USUARIO != undefined) {
         nomeUser.innerHTML = sessionStorage.NOME_USUARIO;
     }
@@ -79,6 +88,7 @@
     if (idMusica == undefined || idMusica == null) {
         location.href = "tabs.html"
     }
+    // Função para inserir o comentário no banco.
     function comentar(){
         var corpo = corpoComentario.value;
         var titulo = tituloComentario.value;
@@ -122,14 +132,16 @@
             return false;
         }
     }
+    // Function para consultar o comentário e inseri-lo no html
     function consultarComentario(){
         fetch(`/acordes/consultarComentario/${idMusica}`).then(function (resposta) {
             console.log("resposta: ", resposta);
             if (resposta.ok) {
                 resposta.json().then(function (jsComentarios) {
                     for (var i = 0; i < jsComentarios.length; i++) {
-                        sectionComentarios.innerHTML = `
+                        sectionComentarios.innerHTML += `
                             <div id='coment'>
+                                <h2>Nome: ${jsComentarios[i].nomeUsuario}</h2>
                                 <h3>Nota: ${jsComentarios[i].nota}</h3>
                                 <h1 id='com_titulo'>${jsComentarios[i].titulo}</h1>
                                 <p>${jsComentarios[i].corpo}</p>    
@@ -138,16 +150,17 @@
                         `;
                     }
                 }).catch(() => {
-                    alert("algo deu errado ao compilar os dados")
+                    console.log("Não há comentários")
                 })
             } else {
                 throw ("Houve um erro ao tentar consultar!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            alert("Houve um erro ao realizar a consulta 219219.");
+            alert("Houve um erro ao realizar a consulta.");
         });
     }
+    // função para consultar e montar os acordes e a música.
     function consultar() {
         fetch(`/acordes/musica/${idMusica}`).then(function (resposta) {
             console.log("resposta: ", resposta);
@@ -164,6 +177,7 @@
                         acordes.innerHTML += "<br>"
                         console.log(todosAcordes)
                         console.log(novoRegistro[i].tempo)
+                        // funcao para inserir o compasso na tab
                         if (novoRegistro[i].tempo == "2/4") {
                             mizinha.innerHTML += " -- -- --"
                             si.innerHTML += " -- -- --"
@@ -236,8 +250,10 @@
                             re.innerHTML += " -- -- --"
                             mizona.innerHTML += " -- -- --"
                         }
+                        var contador = 0;
+                         // funcao para inserir o acorde na tab
                         for (var h = 0; h < todosAcordes.length; h++) {
-                            if (todosAcordes[h] == "A7") {
+                            if (todosAcordes[h] == "A7" && contador <= 25) {
                                 mizinha.innerHTML += " -- -- --"
                                 si.innerHTML += " -- 2- --"
                                 sol.innerHTML += " -- -- --"
@@ -245,8 +261,9 @@
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- -- --"
                                 console.log('a7')
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "A7+") {
+                            else if (todosAcordes[h] == "A7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- -- -- "
                                 si.innerHTML += " -- 2- --"
                                 sol.innerHTML += " -- 1- --"
@@ -254,8 +271,9 @@
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- -- -- "
                                 console.log('a7+')
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "Am") {
+                            else if (todosAcordes[h] == "Am" && contador <= 25) {
                                 mizinha.innerHTML += " -- -- -- "
                                 si.innerHTML += " -- 1- --"
                                 sol.innerHTML += " -- 2- --"
@@ -263,8 +281,9 @@
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- -- -- "
                                 console.log('a7+')
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "B") {
+                            else if (todosAcordes[h] == "B" && contador <= 25) {
                                 mizinha.innerHTML += " -- -- -- "
                                 si.innerHTML += " -- 4- --"
                                 sol.innerHTML += " -- 4- --"
@@ -272,8 +291,9 @@
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- -- -- "
                                 console.log('a7+')
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "Bm") {
+                            else if (todosAcordes[h] == "Bm" && contador <= 25) {
                                 mizinha.innerHTML += " -- -- -- "
                                 si.innerHTML += " -- 4- --"
                                 sol.innerHTML += " -- 5- --"
@@ -281,8 +301,9 @@
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- -- -- "
                                 console.log('a7+')
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "B7") {
+                            else if (todosAcordes[h] == "B7" && contador <= 25) {
                                 mizinha.innerHTML += " -- 2- -- "
                                 si.innerHTML += " -- -- --"
                                 sol.innerHTML += " -- 2- --"
@@ -290,8 +311,9 @@
                                 re.innerHTML += " -- 2- --"
                                 mizona.innerHTML += " -- -- -- "
                                 console.log('a7+')
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "B7+") {
+                            else if (todosAcordes[h] == "B7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- 6- -- "
                                 si.innerHTML += " -- 7- --"
                                 sol.innerHTML += " -- 8- --"
@@ -299,136 +321,153 @@
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- -- -- "
                                 console.log('a7+')
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "Bb") {
+                            else if (todosAcordes[h] == "Bb" && contador <= 25) {
                                 mizinha.innerHTML += " -- 1- -- "
                                 si.innerHTML += " -- 3- --"
                                 sol.innerHTML += " -- 3- --"
                                 la.innerHTML += " -- 3- --"
                                 re.innerHTML += " -- 1- --"
                                 mizona.innerHTML += " -- x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "Bbm") {
+                            else if (todosAcordes[h] == "Bbm" && contador <= 25) {
                                 mizinha.innerHTML += " -- 1- -- "
                                 si.innerHTML += " -- 2- --"
                                 sol.innerHTML += " -- 3- --"
                                 la.innerHTML += " -- 3- --"
                                 re.innerHTML += " -- 1- --"
                                 mizona.innerHTML += " -- x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "Bb7+") {
+                            else if (todosAcordes[h] == "Bb7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- 1- -- "
                                 si.innerHTML += " -- 3- --"
                                 sol.innerHTML += " -- 2- --"
                                 la.innerHTML += " -- 3- --"
                                 re.innerHTML += " -- 1- --"
                                 mizona.innerHTML += " -- x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "C") {
+                            else if (todosAcordes[h] == "C" && contador <= 25) {
                                 mizinha.innerHTML += " -- -- -- "
                                 si.innerHTML += " -- 1- --"
                                 sol.innerHTML += " -- 2- --"
                                 la.innerHTML += " -- 3- --"
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "Cm") {
+                            else if (todosAcordes[h] == "Cm" && contador <= 25) {
                                 mizinha.innerHTML += " -- -- -- "
                                 si.innerHTML += " -- 4- --"
                                 sol.innerHTML += " -- 5- --"
                                 la.innerHTML += " -- 5- --"
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- -- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "C7") {
+                            else if (todosAcordes[h] == "C7" && contador <= 25) {
                                 mizinha.innerHTML += " -- -- -- "
                                 si.innerHTML += " -- 1- --"
                                 sol.innerHTML += " -- 3- --"
                                 la.innerHTML += " -- 2- --"
                                 re.innerHTML += " -- 3- --"
                                 mizona.innerHTML += " -- x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "C#7") {
+                            else if (todosAcordes[h] == "C#7" && contador <= 25) {
                                 mizinha.innerHTML += " -- 4- -- "
                                 si.innerHTML += " -- 6- --"
                                 sol.innerHTML += " -- 5- --"
                                 la.innerHTML += " -- 6- --"
                                 re.innerHTML += " -- 4- --"
                                 mizona.innerHTML += " -- x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "C#m") {
+                            else if (todosAcordes[h] == "C#m" && contador <= 25) {
                                 mizinha.innerHTML += " -- -- -- "
                                 si.innerHTML += " -- -- --"
                                 sol.innerHTML += " -- 1- --"
                                 la.innerHTML += " -- 2- --"
                                 re.innerHTML += " -- 4- --"
                                 mizona.innerHTML += " -- x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "C#7+") {
+                            else if (todosAcordes[h] == "C#7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- 4- -- "
                                 si.innerHTML += " -- 6- --"
                                 sol.innerHTML += " -- 5- --"
                                 la.innerHTML += " -- 6- --"
                                 re.innerHTML += " -- 4- --"
                                 mizona.innerHTML += " -- x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "D") {
+                            else if (todosAcordes[h] == "D" && contador <= 25) {
                                 mizinha.innerHTML += " -- 2- -- "
                                 si.innerHTML += " -- 3- --"
                                 sol.innerHTML += " -- 2- --"
                                 la.innerHTML += " -- -- --"
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- -- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "Dm") {
+                            else if (todosAcordes[h] == "Dm" && contador <= 25) {
                                 mizinha.innerHTML += " -- 1- -- "
                                 si.innerHTML += " -- 3- --"
                                 sol.innerHTML += " -- 2- --"
                                 la.innerHTML += " -- -- --"
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- -- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "D7+") {
+                            else if (todosAcordes[h] == "D7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- 2- -- "
                                 si.innerHTML += " -- 2- --"
                                 sol.innerHTML += " -- 2- --"
                                 la.innerHTML += " -- 0- --"
                                 re.innerHTML += " -- x- --"
                                 mizona.innerHTML += " - x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "E") {
+                            else if (todosAcordes[h] == "E" && contador <= 25) {
                                 mizinha.innerHTML += " -- 0- -- "
                                 si.innerHTML += " -- 0- --"
                                 sol.innerHTML += " -- 1- --"
                                 la.innerHTML += " -- 2- --"
                                 re.innerHTML += " -- 2- --"
                                 mizona.innerHTML += " -- 0- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "Em") {
+                            else if (todosAcordes[h] == "Em" && contador <= 25) {
                                 mizinha.innerHTML += " -- 0- -- "
                                 si.innerHTML += " -- 0- --"
                                 sol.innerHTML += " -- 0- --"
                                 la.innerHTML += " -- 2- --"
                                 re.innerHTML += " -- 2- --"
                                 mizona.innerHTML += " -- 0- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "E7") {
+                            else if (todosAcordes[h] == "E7" && contador <= 25) {
                                 mizinha.innerHTML += " -- 4- -- "
                                 si.innerHTML += " -- 3- --"
                                 sol.innerHTML += " -- 4- --"
                                 la.innerHTML += " -- 2- --"
                                 re.innerHTML += " -- -- --"
                                 mizona.innerHTML += " -- 0- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "E7+") {
+                            else if (todosAcordes[h] == "E7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- x- -- "
                                 si.innerHTML += " -- 0- --"
                                 sol.innerHTML += " -- 1- --"
                                 la.innerHTML += " -- 1- --"
                                 re.innerHTML += " -- 2- --"
                                 mizona.innerHTML += " -- 0- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "F") {
+                            else if (todosAcordes[h] == "F" && contador <= 25) {
                                 mizinha.innerHTML += " -- 0- -- "
                                 si.innerHTML += " -- 0- --"
                                 sol.innerHTML += " -- 2- --"
@@ -436,47 +475,52 @@
                                 re.innerHTML += " -- 3- --"
                                 mizona.innerHTML += " -- 0- -- "
                             }
-                            else if (todosAcordes[h] == "Fm") {
+                            else if (todosAcordes[h] == "Fm" && contador <= 25) {
                                 mizinha.innerHTML += " -- 0- -- "
                                 si.innerHTML += " -- 0- --"
                                 sol.innerHTML += " -- 0- --"
                                 la.innerHTML += " -- 3- --"
                                 re.innerHTML += " -- 3- --"
                                 mizona.innerHTML += " -- 0- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "F7") {
+                            else if (todosAcordes[h] == "F7" && contador <= 25) {
                                 mizinha.innerHTML += " -- 1- -- "
                                 si.innerHTML += " -- 1- --"
                                 sol.innerHTML += " -- 2- --"
                                 la.innerHTML += " -- 1- --"
                                 re.innerHTML += " -- 3- --"
                                 mizona.innerHTML += " -- 1- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "F7+") {
+                            else if (todosAcordes[h] == "F7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- 0- -- "
                                 si.innerHTML += " -- 1- --"
                                 sol.innerHTML += " -- 2- --"
                                 la.innerHTML += " -- 3- --"
                                 re.innerHTML += " -- x- --"
                                 mizona.innerHTML += " -- x- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "F#7+") {
+                            else if (todosAcordes[h] == "F#7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- 2- -- "
                                 si.innerHTML += " -- 2- --"
                                 sol.innerHTML += " -- 3- --"
                                 la.innerHTML += " -- 2- --"
                                 re.innerHTML += " -- 4- --"
                                 mizona.innerHTML += " -- 2- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "G") {
+                            else if (todosAcordes[h] == "G" && contador <= 25) {
                                 mizinha.innerHTML += " -- 3- -- "
                                 si.innerHTML += " -- 0- --"
                                 sol.innerHTML += " -- 0- --"
                                 la.innerHTML += " -- 0- --"
                                 re.innerHTML += " -- 2- --"
                                 mizona.innerHTML += " -- 3- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "Gm") {
+                            else if (todosAcordes[h] == "Gm" && contador <= 25) {
                                 mizinha.innerHTML += " -- 3- -- "
                                 si.innerHTML += " -- 3- --"
                                 sol.innerHTML += " -- 3- --"
@@ -484,45 +528,362 @@
                                 re.innerHTML += " -- 5- --"
                                 mizona.innerHTML += " -- 3- -- "
                             }
-                            else if (todosAcordes[h] == "G7") {
+                            else if (todosAcordes[h] == "G7" && contador <= 25) {
                                 mizinha.innerHTML += " -- 1- -- "
                                 si.innerHTML += " -- 0- --"
                                 sol.innerHTML += " -- 0- --"
                                 la.innerHTML += " -- 0- --"
                                 re.innerHTML += " -- 2- --"
                                 mizona.innerHTML += " -- 3- -- "
+                                contador++;
                             }
 
-                            else if (todosAcordes[h] == "G7+") {
+                            else if (todosAcordes[h] == "G7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- x- -- "
                                 si.innerHTML += " -- 3- --"
                                 sol.innerHTML += " -- 4- --"
                                 la.innerHTML += " -- 4- --"
                                 re.innerHTML += " -- x- --"
                                 mizona.innerHTML += " -- 3- -- "
+                                contador++;
                             }
-                            else if (todosAcordes[h] == "G#7+") {
+                            else if (todosAcordes[h] == "G#7+" && contador <= 25) {
                                 mizinha.innerHTML += " -- x- -- "
                                 si.innerHTML += " -- 3- --"
                                 sol.innerHTML += " -- 0- --"
                                 la.innerHTML += " -- 3- --"
                                 re.innerHTML += " -- 2- --"
                                 mizona.innerHTML += " -- 3- -- "
+                                contador++;
+                            }
+                            // a partir daqui fica na segunda linha
+                            else if (todosAcordes[h] == "A" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- --"
+                                si2.innerHTML += " -- 2- --"
+                                sol2.innerHTML += " -- -- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona22.innerHTML += " -- -- --"
+                                console.log('a7')
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "A7" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- --"
+                                si2.innerHTML += " -- 2- --"
+                                sol2.innerHTML += " -- -- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- -- --"
+                                console.log('a7')
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "A7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- -- "
+                                si2.innerHTML += " -- 2- --"
+                                sol2.innerHTML += " -- 1- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "Am" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- -- "
+                                si2.innerHTML += " -- 1- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "B" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- -- "
+                                si2.innerHTML += " -- 4- --"
+                                sol2.innerHTML += " -- 4- --"
+                                la2.innerHTML += " -- 4- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "Bm" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- -- "
+                                si2.innerHTML += " -- 4- --"
+                                sol2.innerHTML += " -- 5- --"
+                                la2.innerHTML += " -- 5- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "B7" && contador > 25) {
+                                mizinha2.innerHTML += " -- 2- -- "
+                                si2.innerHTML += " -- -- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- 1- --"
+                                re2.innerHTML += " -- 2- --"
+                                mizona2.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "B7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- 6- -- "
+                                si2.innerHTML += " -- 7- --"
+                                sol2.innerHTML += " -- 8- --"
+                                la2.innerHTML += " -- 9- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- -- -- "
+                                console.log('a7+')
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "Bb" && contador > 25) {
+                                mizinha2.innerHTML += " -- 1- -- "
+                                si2.innerHTML += " -- 3- --"
+                                sol2.innerHTML += " -- 3- --"
+                                la2.innerHTML += " -- 3- --"
+                                re2.innerHTML += " -- 1- --"
+                                mizona.innerHTML += " -- x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "Bbm" && contador > 25) {
+                                mizinha2.innerHTML += " -- 1- -- "
+                                si2.innerHTML += " -- 2- --"
+                                sol2.innerHTML += " -- 3- --"
+                                la2.innerHTML += " -- 3- --"
+                                re2.innerHTML += " -- 1- --"
+                                mizona2.innerHTML += " -- x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "Bb7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- 1- -- "
+                                si2.innerHTML += " -- 3- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- 3- --"
+                                re2.innerHTML += " -- 1- --"
+                                mizona2.innerHTML += " -- x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "C" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- -- "
+                                si2.innerHTML += " -- 1- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- 3- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "Cm" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- -- "
+                                si2.innerHTML += " -- 4- --"
+                                sol2.innerHTML += " -- 5- --"
+                                la2.innerHTML += " -- 5- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- -- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "C7" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- -- "
+                                si2.innerHTML += " -- 1- --"
+                                sol2.innerHTML += " -- 3- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- 3- --"
+                                mizona2.innerHTML += " -- x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "C#7" && contador > 25) {
+                                mizinha2.innerHTML += " -- 4- -- "
+                                si2.innerHTML += " -- 6- --"
+                                sol2.innerHTML += " -- 5- --"
+                                la2.innerHTML += " -- 6- --"
+                                re2.innerHTML += " -- 4- --"
+                                mizona2.innerHTML += " -- x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "C#m" && contador > 25) {
+                                mizinha2.innerHTML += " -- -- -- "
+                                si2.innerHTML += " -- -- --"
+                                sol2.innerHTML += " -- 1- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- 4- --"
+                                mizona2.innerHTML += " -- x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "C#7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- 4- -- "
+                                si2.innerHTML += " -- 6- --"
+                                sol2.innerHTML += " -- 5- --"
+                                la2.innerHTML += " -- 6- --"
+                                re2.innerHTML += " -- 4- --"
+                                mizona2.innerHTML += " -- x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "D" && contador > 25) {
+                                mizinha2.innerHTML += " -- 2- -- "
+                                si2.innerHTML += " -- 3- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- -- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- -- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "Dm" && contador > 25) {
+                                mizinha2.innerHTML += " -- 1- -- "
+                                si2.innerHTML += " -- 3- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- -- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- -- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "D7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- 2- -- "
+                                si2.innerHTML += " -- 2- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- 0- --"
+                                re2.innerHTML += " -- x- --"
+                                mizona2.innerHTML += " - x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "E" && contador > 25) {
+                                mizinha2.innerHTML += " -- 0- -- "
+                                si2.innerHTML += " -- 0- --"
+                                sol2.innerHTML += " -- 1- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- 2- --"
+                                mizona2.innerHTML += " -- 0- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "Em" && contador > 25) {
+                                mizinha2.innerHTML += " -- 0- -- "
+                                si2.innerHTML += " -- 0- --"
+                                sol2.innerHTML += " -- 0- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- 2- --"
+                                mizona2.innerHTML += " -- 0- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "E7" && contador > 25) {
+                                mizinha2.innerHTML += " -- 4- -- "
+                                si2.innerHTML += " -- 3- --"
+                                sol2.innerHTML += " -- 4- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- -- --"
+                                mizona2.innerHTML += " -- 0- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "E7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- x- -- "
+                                si2.innerHTML += " -- 0- --"
+                                sol2.innerHTML += " -- 1- --"
+                                la2.innerHTML += " -- 1- --"
+                                re2.innerHTML += " -- 2- --"
+                                mizona2.innerHTML += " -- 0- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "F" && contador > 25) {
+                                mizinha2.innerHTML += " -- 0- -- "
+                                si2.innerHTML += " -- 0- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- 3- --"
+                                re2.innerHTML += " -- 3- --"
+                                mizona2.innerHTML += " -- 0- -- "
+                            }
+                            else if (todosAcordes[h] == "Fm" && contador > 25) {
+                                mizinha2.innerHTML += " -- 0- -- "
+                                si2.innerHTML += " -- 0- --"
+                                sol2.innerHTML += " -- 0- --"
+                                la2.innerHTML += " -- 3- --"
+                                re2.innerHTML += " -- 3- --"
+                                mizona2.innerHTML += " -- 0- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "F7" && contador > 25) {
+                                mizinha2.innerHTML += " -- 1- -- "
+                                si2.innerHTML += " -- 1- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- 1- --"
+                                re2.innerHTML += " -- 3- --"
+                                mizona2.innerHTML += " -- 1- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "F7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- 0- -- "
+                                si2.innerHTML += " -- 1- --"
+                                sol2.innerHTML += " -- 2- --"
+                                la2.innerHTML += " -- 3- --"
+                                re2.innerHTML += " -- x- --"
+                                mizona2.innerHTML += " -- x- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "F#7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- 2- -- "
+                                si2.innerHTML += " -- 2- --"
+                                sol2.innerHTML += " -- 3- --"
+                                la2.innerHTML += " -- 2- --"
+                                re2.innerHTML += " -- 4- --"
+                                mizona2.innerHTML += " -- 2- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "G" && contador > 25) {
+                                mizinha2.innerHTML += " -- 3- -- "
+                                si2.innerHTML += " -- 0- --"
+                                sol2.innerHTML += " -- 0- --"
+                                la2.innerHTML += " -- 0- --"
+                                re2.innerHTML += " -- 2- --"
+                                mizona2.innerHTML += " -- 3- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "Gm" && contador > 25) {
+                                mizinha2.innerHTML += " -- 3- -- "
+                                si2.innerHTML += " -- 3- --"
+                                sol2.innerHTML += " -- 3- --"
+                                la2.innerHTML += " -- 5- --"
+                                re2.innerHTML += " -- 5- --"
+                                mizona2.innerHTML += " -- 3- -- "
+                            }
+                            else if (todosAcordes[h] == "G7" && contador > 25) {
+                                mizinha2.innerHTML += " -- 1- -- "
+                                si2.innerHTML += " -- 0- --"
+                                sol2.innerHTML += " -- 0- --"
+                                la2.innerHTML += " -- 0- --"
+                                re2.innerHTML += " -- 2- --"
+                                mizona2.innerHTML += " -- 3- -- "
+                                contador++;
                             }
 
+                            else if (todosAcordes[h] == "G7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- x- -- "
+                                si2.innerHTML += " -- 3- --"
+                                sol2.innerHTML += " -- 4- --"
+                                la2.innerHTML += " -- 4- --"
+                                re2.innerHTML += " -- x- --"
+                                mizona2.innerHTML += " -- 3- -- "
+                                contador++;
+                            }
+                            else if (todosAcordes[h] == "G#7+" && contador > 25) {
+                                mizinha2.innerHTML += " -- x- -- "
+                                si2.innerHTML += " -- 3- --"
+                                sol2.innerHTML += " -- 0- --"
+                                la2.innerHTML += " -- 3- --"
+                                re2.innerHTML += " -- 2- --"
+                                mizona2.innerHTML += " -- 3- -- "
+                                contador++;
+                            }
                             else {
-                                mizinha.innerHTML += " -- -- -- "
-                                si.innerHTML += " -- -- -- "
-                                sol.innerHTML += " -- 2- -- "
-                                la.innerHTML += " -- 4- -- "
-                                re.innerHTML += " -- -- -- "
+                                mizinha2.innerHTML += " -- -- -- "
+                                si2.innerHTML += " -- -- -- "
+                                sol2.innerHTML += " -- 2- -- "
+                                la2.innerHTML += " -- 4- -- "
+                                re2.innerHTML += " -- -- -- "
                                 mizona.innerHTML += " -- -- -- "
                                 console.log(todosAcordes[h])
+                                contador++;
                             }
                         }
                     }
                 }).catch(() => {
-                    alert("algo deu errado ao compilar os dados")
+                    alert("algo deu errado ao compilar os dados 121312131")
                 })
             } else {
                 throw ("Houve um erro ao tentar consultar!");

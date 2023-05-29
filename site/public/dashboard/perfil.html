@@ -17,7 +17,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), buscarMusicas()">
 
     <nav>
         <ul class="title">
@@ -54,6 +54,10 @@
         <button onclick="inserirAcorde()">Inserir acorde</button>
         <div id="res"></div>
         <button onclick="inserirMusica()">Cadastrar musica</button>
+    </div>
+    <br>
+    <div id='musicas'>
+
     </div>
 </body>
 
@@ -131,6 +135,35 @@
                     alert("Houve um erro ao realizar o cadastro.");
                 });
         }
+    }
+    // buscar as musicas já feitas
+
+    function buscarMusicas(){
+        fetch(`/acordes/consultarMusicasUser/${sessionStorage.ID_USUARIO}`).then(function (resposta) {
+            console.log("resposta: ", resposta);
+            if (resposta.ok) {
+                resposta.json().then(function (todasMusicas) {
+                    for (var i = 0; i < todasMusicas.length; i++) {
+                        musicas.innerHTML += `
+                            <div id='musica'>
+                                <h2>${todasMusicas[i].nomeMusica}</h2>
+                                <img src='${todasMusicas[i].img}'>
+                                <h4 id='com_titulo'>${todasMusicas[i].descricao}</h1>
+                                <a href='minhaMusica.html?idMusica=${todasMusicas[i].idMusica}'>Verificar os status da música</a>'
+                            </div>
+
+                        `;
+                    }
+                }).catch(() => {
+                    console.log("Não há comentários")
+                })
+            } else {
+                throw ("Houve um erro ao tentar consultar!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            alert("Houve um erro ao realizar a consulta.");
+        });
     }
     
 </script>

@@ -69,10 +69,12 @@ body{
     text-align: center;
 }
 .seuComentario{
-    width: 100%;
+    width: auto;
     height: auto;
     padding: 10px;
     margin: auto;
+    border-bottom: 2px solid gray;
+    padding: 20px;
 }
 .seuComentario h3{
     width: 400px;
@@ -107,4 +109,13 @@ body{
 }
 .lbl_tit, .lbl_com{
     font-size: 18px;
+}
+
+#coment{
+    width: 80%;
+    height: auto;
+    margin: auto;
+    margin-top: 10px;
+    border: 2px solid black;
+    padding: 40px;
 }
