@@ -1,12 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Minha Música</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-    
+
+<body onload="consultarLikes()">
+    <nav>
+        <ul class="title">
+            <li><a href="../index.html">Acoustic</a></li>
+        </ul>
+        <ul>
+            <li><a href="cifra.html">Cifras</a></li>
+            <li><a href="tabs.html">Tabs</a></li>
+            <li><a href="perfil.html" id="nomeUser"></a></li>
+
+        </ul>
+
+    </nav>
+    <div style="width: 60%; margin: auto;">
+        <canvas id="likes"></canvas>
+    </div>
 </body>
+
 </html>
+<script>
+    const grafico = document.getElementById("likes");
+
+    var pog = new Chart(grafico, {
+        type: 'bar',
+        data: {
+            labels: ['5 estrelas', '4 estrelas', '3 estrelas', '2 estrelas', '1 estrelas'],
+            datasets: [{
+                label: 'Quantidade de votos',
+                data: [],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    function consultarLikes() {
+        const idUsuario = sessionStorage.ID_USUARIO;
+        const urlParams = new URLSearchParams(window.location.search);
+        const idMusica = urlParams.get("idMusica")
+        if (idUsuario == undefined) {
+            location.href = '../login.html';
+        }
+        else {
+            nomeUser.innerHTML = sessionStorage.NOME_USUARIO;
+            fetch(`/acordes/consultarNota/${idUsuario}/${idMusica}`).then(function (resposta) {
+                console.log("resposta: ", resposta);
+                if (resposta.ok) {
+                    resposta.json().then(function (jsNotas) {
+                        pog.data.datasets[0].data.push(jsNotas[0].nota5)
+                        pog.data.datasets[0].data.push(jsNotas[0].nota4)
+                        pog.data.datasets[0].data.push(jsNotas[0].nota3)
+                        pog.data.datasets[0].data.push(jsNotas[0].nota2)
+                        pog.data.datasets[0].data.push(jsNotas[0].nota1)
+                        pog.update()
+                    }).catch(() => {
+                        console.log("Não há comentários")
+                    })
+                } else {
+                    throw ("Houve um erro ao tentar consultar!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                alert("Houve um erro ao realizar a consulta.");
+            });
+        }
+
+
+    }
+</script>

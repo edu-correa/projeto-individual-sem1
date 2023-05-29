@@ -22,4 +22,7 @@ router.get("/consultarComentario/:idMusica", (req, res) => {
 router.get("/consultarMusicasUser/:idUsuario", (req, res) => {
     controllerAcordes.consultarMusicasUser(req,res)
 })
+router.get("/consultarNota/:idUsuario/:idMusica", (req, res) => {
+    controllerAcordes.consultarNota(req, res);
+})
 module.exports = router;

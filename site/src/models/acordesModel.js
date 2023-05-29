@@ -52,11 +52,22 @@ function consultarMusicasUser(idUsuario){
     `;
     return database.executar(instrucao);
 }
+function consultarNota(idUsuario, idMusica){
+    var instrucao = `
+    SELECT (SELECT count(nota) FROM comentario JOIN musica ON comentario.idMusica = musica.idMusica WHERE musica.idUsuario = ${idUsuario} and nota = 1 and comentario.idMusica = ${idMusica}) as nota1,
+    (SELECT count(nota) FROM comentario JOIN musica ON comentario.idMusica = musica.idMusica WHERE musica.idUsuario = ${idUsuario} and nota = 2 and comentario.idMusica = ${idMusica}) as nota2,
+    (SELECT count(nota) FROM comentario JOIN musica ON comentario.idMusica = musica.idMusica WHERE musica.idUsuario = ${idUsuario} and nota = 3 and comentario.idMusica = ${idMusica}) as nota3,
+    (SELECT count(nota) FROM comentario JOIN musica ON comentario.idMusica = musica.idMusica WHERE musica.idUsuario = ${idUsuario} and nota = 4 and comentario.idMusica = ${idMusica}) as nota4,
+    (SELECT count(nota) FROM comentario JOIN musica ON comentario.idMusica = musica.idMusica WHERE musica.idUsuario = ${idUsuario} and nota = 5 and comentario.idMusica = ${idMusica}) as nota5;
+    `;
+    return database.executar(instrucao);
+}
 module.exports = {
     cadastrarAcorde,
     consultarAcorde,
     musica,
     comentar,
     consultarComentario,
-    consultarMusicasUser
+    consultarMusicasUser,
+    consultarNota
 }

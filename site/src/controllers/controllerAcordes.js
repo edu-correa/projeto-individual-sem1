@@ -146,7 +146,22 @@ function consultarComentario(req, res){
         )
     }
 }
-
+function consultarNota(req, res){
+    var idUsuario = req.params.idUsuario;
+    var idMusica = req.params.idMusica;
+    if(idUsuario != null){
+        modelAcordes.consultarNota(idUsuario, idMusica).then(
+            async (resp) => {
+                var respostas = await resp;
+                if(respostas.length > 0){
+                    res.status(200).json(respostas);
+                } else{
+                    res.status(204).send("Nenhum resultado encontrado!")
+                }
+            }
+        )
+    }
+}
 
 module.exports = {
     cadastrar,
@@ -154,5 +169,6 @@ module.exports = {
     musica,
     comentar,
     consultarComentario,
-    consultarMusicasUser
+    consultarMusicasUser,
+    consultarNota
 }
