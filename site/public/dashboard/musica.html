@@ -81,7 +81,7 @@
             <li><a href="cadastro.html">Cadastro</a></li>`
     }
     else{
-        cadastrado.innerHTML += `<li><a href='dashboard/perfil.html'>${sessionStorage.NOME_USUARIO}</a></li>`
+        cadastrado.innerHTML += `<li><a href='perfil.html'>${sessionStorage.NOME_USUARIO}</a></li>`
     }
     const urlParams = new URLSearchParams(window.location.search);
     const idMusica = urlParams.get("idMusica") // livros
