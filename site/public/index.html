@@ -12,11 +12,9 @@
         <ul class="title">
              <li><a href="index.html">Acoustic</a></li>
         </ul>
-        <ul>
-            <li><a href="dashboard/cifra.html">Cifras</a></li>
+        <ul  id="cadastrado">
             <li><a href="dashboard/tabs.html">Tabs</a></li>
-            <li><a href="../login.html">Login</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
+           
         </ul>
     </nav>
     <div class="container prop">
@@ -48,3 +46,12 @@
     <div class="footer"></div>
 </body>
 </html>
+<script>
+    if(sessionStorage.NOME_USUARIO == undefined){
+        cadastrado.innerHTML += `<li><a href="../login.html">Login</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>`
+    }
+    else{
+        cadastrado.innerHTML += `<li><a href='dashboard/perfil.html'>${sessionStorage.NOME_USUARIO}</a></li>`
+    }
+</script>

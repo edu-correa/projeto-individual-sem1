@@ -28,11 +28,9 @@
         <ul class="title">
              <li><a href="index.html">Acoustic</a></li>
         </ul>
-        <ul>
-            <li><a href="cifra.html">Cifras</a></li>
-            <li><a href="tabs.html">Tabs</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="cadastro.html">Cadastro</a></li>
+        <ul id="cadastrado">
+            <li><a href="dashboard/tabs.html">Tabs</a></li>
+
         </ul>
     </nav>
     <!--header fim-->
@@ -53,6 +51,10 @@
                         <input id="email_input" type="text" placeholder="meuemail@provedor.com">
                     </div>
                     <div class="campo">
+                        <span>Foto de perfil (URL):</span>
+                        <input id="foto_perfil" type="text" placeholder="https://imagem.com/imagem.png">
+                    </div>
+                    <div class="campo">
                         <span>Senha:</span>
                         <input id="senha_input" type="password" placeholder="******">
                     </div>
@@ -71,8 +73,6 @@
     <!--footer inicio-->
     <div class="footer">
         <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-            <span class="version">v1.0.0</span>
         </div>
     </div>
     <!--footer fim-->
@@ -83,6 +83,13 @@
 </html>
 
 <script>
+    if(sessionStorage.NOME_USUARIO == undefined){
+        cadastrado.innerHTML += `<li><a href="../login.html">Login</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>`
+    }
+    else{
+        cadastrado.innerHTML += `<li><a href='dashboard/perfil.html'>${sessionStorage.NOME_USUARIO}</a></li>`
+    }
     function cadastrar() {
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
@@ -90,6 +97,10 @@
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        var urlImg = foto_perfil.value;
+
+        alert(urlImg
+        )
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             alert("Insira os dados corretamente")
@@ -106,7 +117,8 @@
                     // Agora vá para o arquivo routes/usuario.js
                     nomeServer: nomeVar,
                     emailServer: emailVar,
-                    senhaServer: senhaVar
+                    senhaServer: senhaVar,
+                    imagemServer: urlImg
                 })
             }).then(function (resposta) {
 

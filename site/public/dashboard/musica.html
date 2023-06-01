@@ -15,10 +15,9 @@
         <ul class="title">
             <li><a href="../index.html">Acoustic</a></li>
         </ul>
-        <ul>
-            <li><a href="cifra.html">Cifras</a></li>
+        <ul id="cadastrado">
             <li><a href="tabs.html">Tabs</a></li>
-            <li><a href="perfil.html" id="nomeUser"></a></li>
+            
 
         </ul>
 
@@ -77,11 +76,12 @@
 </html>
 <script>
     // verificação do login
-    if (sessionStorage.NOME_USUARIO != undefined) {
-        nomeUser.innerHTML = sessionStorage.NOME_USUARIO;
+    if(sessionStorage.NOME_USUARIO == undefined){
+        cadastrado.innerHTML += `<li><a href="../login.html">Login</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>`
     }
-    else {
-        location.href = '../login.html'
+    else{
+        cadastrado.innerHTML += `<li><a href='dashboard/perfil.html'>${sessionStorage.NOME_USUARIO}</a></li>`
     }
     const urlParams = new URLSearchParams(window.location.search);
     const idMusica = urlParams.get("idMusica") // livros
@@ -93,7 +93,7 @@
         var corpo = corpoComentario.value;
         var titulo = tituloComentario.value;
         var notaf = Number(nota.value);
-        if(corpo != null && titulo != null & notaf > 0){
+        if(corpo != null && titulo != null & notaf > 0 && sessionStorage.NOME_USUARIO != null){
             fetch("/acordes/comentar", {
                 method: "POST",
                 headers: {
@@ -130,6 +130,8 @@
             });
 
             return false;
+        } else{
+            alert("Dados inválidos ou usuário não cadastrado")
         }
     }
     // Function para consultar o comentário e inseri-lo no html
@@ -141,10 +143,13 @@
                     for (var i = 0; i < jsComentarios.length; i++) {
                         sectionComentarios.innerHTML += `
                             <div id='coment'>
-                                <h2>Nome: ${jsComentarios[i].nomeUsuario}</h2>
-                                <h3>Nota: ${jsComentarios[i].nota}</h3>
-                                <h1 id='com_titulo'>${jsComentarios[i].titulo}</h1>
-                                <p>${jsComentarios[i].corpo}</p>    
+                                <div id='cImagem'> <img src= ${jsComentarios[i].imagemUsuario}></div>
+                                <div id='conteudo'> 
+                                    <h2>Nome: ${jsComentarios[i].nomeUsuario}</h2>
+                                    <h3>Nota: ${jsComentarios[i].nota}</h3>
+                                    <h1 id='com_titulo'>${jsComentarios[i].titulo}</h1>
+                                    <p>${jsComentarios[i].corpo}</p>    
+                                </div>    
                             </div>
 
                         `;

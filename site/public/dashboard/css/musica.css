@@ -118,4 +118,14 @@ body{
     margin-top: 10px;
     border: 2px solid black;
     padding: 40px;
+    display: flex;
+    padding: 10px;
+}
+
+#coment img{
+    height: 100px;
+    border-radius: 50%;
+}
+#cImagem{
+    margin-right:  40px;
 }

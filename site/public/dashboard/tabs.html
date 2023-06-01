@@ -15,11 +15,9 @@
         <ul class="title">
             <li><a href="../index.html">Acoustic</a></li>
         </ul>
-        <ul>
-            <li><a href="cifra.html">Cifras</a></li>
+        <ul id="cadastrado">
             <li><a href="tabs.html">Tabs</a></li>
-            <li><a href="perfil.html" id="nomeUser"></a></li>
-
+            
         </ul>
 
     </nav>
@@ -32,11 +30,12 @@
 
 </html>
 <script>
-    if (sessionStorage.NOME_USUARIO != undefined) {
-        nomeUser.innerHTML = sessionStorage.NOME_USUARIO;
+     if(sessionStorage.NOME_USUARIO == undefined){
+        cadastrado.innerHTML += `<li><a href="../login.html">Login</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>`
     }
-    else {
-        location.href = '../login.html'
+    else{
+        cadastrado.innerHTML += `<li><a href='dashboard/perfil.html'>${sessionStorage.NOME_USUARIO}</a></li>`
     }
     function consultar(){
         fetch("/acordes/consultar").then(function (resposta) {
