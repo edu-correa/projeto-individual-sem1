@@ -65,7 +65,7 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var imagem = req.body.imagemServer;
-    console.log("Imagem: " + imagemx    )
+    console.log("Imagem: " + imagem   )
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
