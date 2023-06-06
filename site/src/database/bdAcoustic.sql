@@ -9,6 +9,12 @@ CREATE TABLE usuario (
 	senhaUsuario VARCHAR(50),
 	imagemUsuario varchar(300)
 );
+CREATE TABLE celular(
+	idCelular int primary key auto_increment,
+    celular char(9),
+    fkUsuario int,
+    FOREIGN KEY (fkUsuario) references usuario(idUsuario)
+);
 
 
 create table musica (
@@ -32,4 +38,5 @@ CREATE TABLE comentario(
 	FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
 
-SELECT * FROM musica;
+
+ SELECT * FROM usuario WHERE emailUsuario = 'edu@gmail.com' and senhaUsuario = 123;
