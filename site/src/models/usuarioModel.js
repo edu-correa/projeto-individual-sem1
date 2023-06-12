@@ -34,7 +34,7 @@ function cadastrar(nome, email, senha, imagem) {
 function telefone(celular){
     console.log('inserindo o celular: ' + celular)
     var instrucao = `
-        INSERT INTO celular (fkUsuario, celular) VALUES ((SELECT LAST_INSERT_ID(idUsuario) from usuario), ${celular});
+        INSERT INTO celular (fkUsuario, celular) VALUES ((SELECT LAST_INSERT_ID(idUsuario) as id from usuario ORDER BY id desc LIMIT 1), ${celular});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
